@@ -26,11 +26,19 @@ const ArtworkUpload = ({ onPaletteChange }) => {
       // Create a canvas element to extract pixel data
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      ctx.drawImage(img, 0, 0, img.width, img.height);
+    //   canvas.width = img.width;
+    //   canvas.height = img.height;
+    //   ctx.drawImage(img, 0, 0, img.width, img.height);
 
-      // Get pixel data from the canvas
+      
+	  // Resize the image to a smaller size for performance
+	  const maxDimension = 500; // Set the maximum dimension for resizing
+	  const scale = Math.min(maxDimension / img.width, maxDimension / img.height);
+	  canvas.width = img.width * scale;
+	  canvas.height = img.height * scale;
+	  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+	  
+	  // Get pixel data from the canvas
       const pixelData = ctx.getImageData(0, 0, img.width, img.height).data;
 
       // Convert the pixel data into a color palette
@@ -55,7 +63,7 @@ const ArtworkUpload = ({ onPaletteChange }) => {
       // Pass the extracted color palette to the parent component
       onPaletteChange(palette);
     };
-	
+
 	img.onerror = (error) => {
 		console.log('Image failed to load:', error);
 	};

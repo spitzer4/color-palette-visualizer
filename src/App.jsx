@@ -11,7 +11,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Artwork Color Palette Extractor</h1>
+      <h1>Artwork Color Palette Extractor 🎨</h1>
       <ArtworkUpload onPaletteChange={handlePaletteChange} />
 
       <div className="palette-display">
