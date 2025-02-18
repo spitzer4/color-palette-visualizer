@@ -16,9 +16,11 @@ const ArtworkUpload = ({ onPaletteChange }) => {
 
   const extractColors = (imageFile) => {
     // Create an image element to use it for color extraction
+	console.log('Image file:', imageFile);  // Check the uploaded file
     const img = new Image();
     img.src = URL.createObjectURL(imageFile);
     img.onload = () => {
+	  console.log('Image loaded');
       // Once the image is loaded, extract the colors using Chroma.js
 
       // Create a canvas element to extract pixel data
@@ -53,6 +55,10 @@ const ArtworkUpload = ({ onPaletteChange }) => {
       // Pass the extracted color palette to the parent component
       onPaletteChange(palette);
     };
+	
+	img.onerror = (error) => {
+		console.log('Image failed to load:', error);
+	};
   };
 
   return (
