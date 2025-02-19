@@ -26,10 +26,6 @@ const ArtworkUpload = ({ onPaletteChange }) => {
       // Create a canvas element to extract pixel data
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
-    //   canvas.width = img.width;
-    //   canvas.height = img.height;
-    //   ctx.drawImage(img, 0, 0, img.width, img.height);
-
       
 	  // Resize the image to a smaller size for performance
 	  const maxDimension = 500; // Set the maximum dimension for resizing
